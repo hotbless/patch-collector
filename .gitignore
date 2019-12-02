@@ -102,3 +102,12 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+/.gitignore
+### Example user template template
+### Example user template
+
+# IntelliJ project files
+.idea
+*.iml
+out
+gen
