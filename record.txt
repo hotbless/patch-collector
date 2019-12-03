@@ -13,3 +13,52 @@ You don’t need to restart the server for code changes to take effect.
 However, some actions like adding files don’t trigger a restart, so you’ll have to restart the server in these cases.
 
 4. Create app: python manage.py startapp polls
+
+# Tips:
+When to use include():
+You should always use include() when you include other URL patterns. admin.site.urls is the only exception to this.
+
+# Tips:
+For databases other than SQLite:
+    . If you’re using a database besides SQLite, make sure you’ve created a database by this point.
+       Do that with “CREATE DATABASE database_name;” within your database’s interactive prompt.
+
+    . Also make sure that the database user provided in mysite/settings.py has “create database” privileges.
+       This allows automatic creation of a test database which will be needed in a later tutorial.
+
+    . If you’re using SQLite, you don’t need to create anything beforehand.
+       The database file will be created automatically when it is needed.
+
+5. Create data model by modify models.py in app directory.
+
+6. Make migration for model: python manage.py makemigrations
+   example:
+   Migrations for 'article':
+    article\migrations\0001_initial.py
+    - Create model Article
+
+7. python manage.py migrate
+   Operations to perform:
+    Apply all migrations: admin, article, auth, contenttypes, sessions
+   Running migrations:
+    Applying article.0001_initial... OK
+
+8. install django-rest-framework: pip install djangorestframework
+   Add it by modify settings.py file: INSTALLED_APPS = ['rest_framework']
+
+9. create serializers.py and viewsets.py under app directory.
+
+10. create routers.py under site directory(with settings.py).
+
+11. import routers file inside the urls.py which contain all the url routes.
+    example:
+        from django.contrib import admin
+        from django.urls import path, include
+        from .routers import router
+        urlpatterns = [
+            path(‘admin/’, admin.site.urls),
+            path(‘api/’, include(router.urls))
+        ]
+
+
+
